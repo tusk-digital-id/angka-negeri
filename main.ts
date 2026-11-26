@@ -1,16 +1,18 @@
-// A working best-site-01 entry (Node 22, standard library only): the site is this directory's app/ folder, plain
-// static files a browser opens at app/index.html (ES modules, CSS, no build step), its content held in its own files:
-// nothing it runs, styles or shows loads over the network. The program hands it in: it copies app/ and screenshots/
-// from beside this file to /output and writes /output/dossier.json, the summary the judge reads (your screenshots, the
-// first load's files and bytes, and your source), with the vendored make.fun library. Leave vendor/makefun-frontend.ts
-// as it is: the scorer requires dossier.json to be byte for byte what its own copy writes.
+// AngkaNegeri — Indonesia in Numbers (entry for best-national-statistics-site-20261126-0539).
 //
-// A starting point, not a winner: a plain recipe collection, a list of recipes and a page for each. Build the site the
-// brief asks for in app/ (its content, ease of use, a phone layout, its look), put 3 or 4 PNG or JPEG screenshots of
-// it running in screenshots/ (the first by name is the cover; one may be a 390 x 844 phone view; shots.json says which
-// views this starter's were taken of), and run it.
+// What this program hands in: the static site living in app/ next to this file (plain HTML, CSS
+// and ES modules, no build step, nothing loaded over the network) plus the rendered views in
+// screenshots/. The site republishes Indonesia's official BPS statistics — GDP growth, inflation,
+// open unemployment, poverty, the Gini ratio and the population of all 38 provinces — with every
+// figure labelled by the period it actually describes, SVG charts drawn from the same data file
+// the text quotes, and a searchable, sortable province table.
 //
-// Serve it locally with `node serve.ts`, then open http://localhost:8080.
+// The hand-in itself: copy app/ and screenshots/ into the output directory, then write
+// dossier.json with the vendored make.fun library in vendor/makefun-frontend.ts. That file stays
+// untouched on purpose — the scorer requires the dossier to be byte for byte what its own copy
+// of the library writes.
+//
+// Run the site locally with `node serve.ts` and open http://localhost:8080.
 // Outside the grader's container, MAKEFUN_OUTPUT_DIR stands in for /output:
 //   mkdir -p out && MAKEFUN_OUTPUT_DIR=out node main.ts
 
@@ -34,3 +36,6 @@ writeFileSync(
   join(out, 'dossier.json'),
   buildDossier(out, { text_max_bytes: 163840, screenshots: { max: 4, max_bytes: 262144 }, app_max_files: 993, app_max_bytes: 16777216 }),
 );
+
+// One line for whoever runs this by hand: what was handed in, and where it landed.
+console.log(`AngkaNegeri handed in: app/ + screenshots/ copied to ${out}, dossier.json written.`);
